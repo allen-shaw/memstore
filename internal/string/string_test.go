@@ -195,10 +195,9 @@ func Benchmark_MyString(b *testing.B) {
 			str.Cat(cutSet)
 		}
 	}
-	fmt.Println("start benchmark")
+	fmt.Println("start benchmark ", b.Name())
 
 	b.ResetTimer()
-	b.N = 10000
 	for i := 0; i < b.N; i++ {
 		f()
 	}
@@ -208,14 +207,30 @@ func Benchmark_RawString(b *testing.B) {
 	str := strings.Clone(raw)
 	f := func() {
 		for i := 0; i < 10000; i++ {
-			str = strings.TrimPrefix(str, cutset)
+			str = strings.Trim(str, cutset)
 			str = cutset + str
 		}
 	}
-	fmt.Println("start benchmark")
+	fmt.Println("start benchmark ", b.Name())
 
 	b.ResetTimer()
-	b.N = 10000
+	for i := 0; i < b.N; i++ {
+		f()
+	}
+}
+
+func Benchmark_MyString2(b *testing.B) {
+	str := New2([]byte(raw))
+	cutSet := New2([]byte(cutset))
+	f := func() {
+		for i := 0; i < 10000; i++ {
+			str.Trim(cutset)
+			str.Cat(cutSet)
+		}
+	}
+	fmt.Println("start benchmark ", b.Name())
+
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		f()
 	}

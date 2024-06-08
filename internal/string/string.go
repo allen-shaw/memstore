@@ -115,3 +115,5 @@ func (s *String) Trim(cset string) {
 	s.free = s.free + s.len - length
 	s.len = length
 }
+
+
