@@ -2,8 +2,9 @@ package dict
 
 import (
 	"errors"
-	"github.com/allen-shaw/memstore/internal/assert"
 	"math"
+
+	"github.com/allen-shaw/memstore/internal/assert"
 )
 
 var (
@@ -290,3 +291,21 @@ func (d *Dict) nextPower(size uint64) uint64 {
 func (d *Dict) compareKey(key1, key2 interface{}) int {
 	return d.typ.KeyCompare(d.privData, key1, key2)
 }
+
+func (d *Dict) Replace(key, val interface{}) error {
+
+}
+
+func (d *Dict) FetchValue(key interface{}) interface{} {
+
+}
+
+func (d *Dict) GetRandomKey() *Entry {
+
+}
+
+func (d *Dict) Delete(key interface{}) error {
+
+}
+
+func (d *Dict) Release() {}
